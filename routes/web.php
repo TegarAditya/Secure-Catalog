@@ -22,3 +22,4 @@ Route::get('/login', [AuthController::class, 'indexlogin'])->name('login');
 Route::get('/register', [AuthController::class, 'indexregister'])->name('register');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/dashboard', [PageController::class, 'index'])->name('dashboard');
