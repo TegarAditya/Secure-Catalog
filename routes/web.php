@@ -23,4 +23,7 @@ Route::get('/login', [AuthController::class, 'indexlogin'])->name('login');
 Route::get('/register', [AuthController::class, 'indexregister'])->name('register');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::get('/dashboard', [PageController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [PageController::class, 'indexadmin'])->name('dashboardadmin');
+Route::get('/dashboard', [PageController::class, 'indexsuperadmin'])->name('dashboardsuperadmin');
+Route::get('/dashboard', [PageController::class, 'indexuser'])->name('dashboarduser');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
