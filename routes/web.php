@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\AuthController;
+use app\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
