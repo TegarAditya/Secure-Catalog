@@ -7,7 +7,6 @@ use App\Models\Produk;
 
 class PageController extends Controller
 {
-
     public function katalog() {
         $produk = Produk::all();
         return view('katalog', compact('produk'));

@@ -17,8 +17,10 @@ use app\Http\Controllers\UserController;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return dd('s');
+    //return view('welcome');
 });
 
 

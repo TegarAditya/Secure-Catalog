@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+
 class AuthController extends Controller
 {
-    
     public function indexlogin()
     {
         //return view login
@@ -102,4 +102,3 @@ class AuthController extends Controller
         return redirect('login');
     }
 }
-
