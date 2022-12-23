@@ -1,10 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\AuthController;
-use app\Http\Controllers\PageController;
-use app\Http\Controllers\ProdukController;
-use app\Http\Controllers\UserController;
+
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
