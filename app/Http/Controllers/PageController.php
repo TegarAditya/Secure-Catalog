@@ -3,25 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produk;
 
 class PageController extends Controller
 {
-    //make index function
-    public function indexadmin()
-    {
-        //return view dashboard
-        return view('dashboard');
-    }
-    
-    public function indexuser()
-    {
-        //return view dashboard
-        return view('dashboard');
+
+    public function katalog() {
+        $produk = Produk::all();
+        return view('katalog', compact('produk'));
     }
 
-    public function indexsuperadmin()
-    {
-        //return view dashboard
-        return view('dashboard');
+    public function detail($id) {
+        $produk = Produk::find($id);
+        return view('detail', compact('produk'));
+    }
+
+    public function laporan() {
+        return view('laporan');
     }
 }

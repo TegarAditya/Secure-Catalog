@@ -44,11 +44,11 @@ class AuthController extends Controller
             if ($user) {
                 Auth::login($user);
                 if ($user->role == 'admin') {
-                    return redirect('dashboardadmin');
+                    return redirect('dashboard.admin');
                 } else if ($user->role == 'superadmin') {
-                    return redirect('dashboardsuperadmin');
+                    return redirect('dashboard.superadmin');
                 } else if ($user->role == 'user') {
-                    return redirect('dashboarduser');
+                    return redirect('dashboard.user');
                 }
             } else {
                 //redirect to login
@@ -81,11 +81,11 @@ class AuthController extends Controller
             if ($user) {
                 Auth::login($user);
                 if ($user->role == 'admin') {
-                    return redirect('dashboardadmin');
+                    return redirect('dashboard.admin');
                 } else if ($user->role == 'superadmin') {
-                    return redirect('dashboardsuperadmin');
+                    return redirect('dashboard.superadmin');
                 } else if ($user->role == 'user') {
-                    return redirect('dashboarduser');
+                    return redirect('dashboard.user');
                 }
             } else {
                 //redirect to login
@@ -102,3 +102,4 @@ class AuthController extends Controller
         return redirect('login');
     }
 }
+
