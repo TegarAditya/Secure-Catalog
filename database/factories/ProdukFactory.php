@@ -21,9 +21,9 @@ class ProdukFactory extends Factory
             'stok' => fake()->randomNumber(),
             'jenis' => fake()->randomElement(['makanan', 'minuman']),
             'deskripsi' => fake()->text(),
-            'harga' => fake()->randomFloat(),
+            'harga' => fake()->randomFloat(2, 0, 999999),
             'gambar' => fake()->imageUrl(),
-            'discount' => fake()->randomFloat(),
+            'discount' => fake()->randomFloat(2, 0, 99),
         ];
     }
 }

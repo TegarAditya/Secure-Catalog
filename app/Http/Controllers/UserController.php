@@ -26,7 +26,13 @@ class UserController extends Controller
     function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->update($request->validate());
+        $user->update($request->validate(
+            [
+                'name' => 'required',
+                'email' => 'required',
+                'role' => 'required',
+            ]
+        ));
         return redirect('user');
     }
     function destroy($id)

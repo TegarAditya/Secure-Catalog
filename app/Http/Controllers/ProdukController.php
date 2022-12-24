@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
-use App\Http\Requests\StoreProdukRequest;
-use App\Http\Requests\UpdateProdukRequest;
 
 class ProdukController extends Controller
 {
@@ -40,12 +38,11 @@ class ProdukController extends Controller
      * @param  \App\Http\Requests\StoreProdukRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProdukRequest $request)
+    public function store(Request $request)
     {
-        //store new data of table produk
-        $produk = Produk::create($request->validated());
+        $produk = Produk::create($request->toArray());
         //redirect to index
-        return redirect()->route('produk.index');
+        return redirect()->route('produk');
 
     }
 
@@ -82,13 +79,13 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProdukRequest $request,$id)
+    public function update(Request $request,$id)
     {
         $produk = Produk::find($id);
         //update one data of table produk
-        $produk->update($request->validated());
+        $produk->update($request->toArray());
         //redirect to index
-        return redirect()->route('produk.index');
+        return redirect()->route('produk');
     }
 
     /**
@@ -103,6 +100,6 @@ class ProdukController extends Controller
         //destroy one data of table produk
         $produk->delete();
         //redirect to index
-        return redirect()->route('produk.index');
+        return redirect()->route('produk');
     }
 }

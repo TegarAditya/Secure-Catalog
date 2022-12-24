@@ -24,11 +24,11 @@ class RoleMiddleware
             return $next($request);
         }
         if ($user->role == 'admin') {
-            return redirect('dashboard.admin');
+            return redirect()->route('dashboard');
         } else if ($user->role == 'superadmin') {
-            return redirect('dashboard.superadmin');
+            return redirect()->route('laporan');
         } else if ($user->role == 'user') {
-            return redirect('dashboard.user');
+            return redirect()->route('dashboard');
         }
     }
 }

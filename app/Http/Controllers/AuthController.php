@@ -19,17 +19,17 @@ class AuthController extends Controller
     public function indexregister()
     {
         //return view login
-        return view('login');
+        return view('register');
     }
     
     public function login(Request $request)
     {
-        //return view login
+
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
         ]);
-        //auth user from database with validator
+
         if ($validator->fails()) {
             return redirect('login')
                         ->withErrors($validator)
@@ -44,11 +44,11 @@ class AuthController extends Controller
             if ($user) {
                 Auth::login($user);
                 if ($user->role == 'admin') {
-                    return redirect('dashboard.admin');
+                    return redirect()->route('dashboard');
                 } else if ($user->role == 'superadmin') {
-                    return redirect('dashboard.superadmin');
+                    return redirect()->route('laporan');
                 } else if ($user->role == 'user') {
-                    return redirect('dashboard.user');
+                    return redirect()->route('dashboard');
                 }
             } else {
                 //redirect to login
@@ -62,18 +62,20 @@ class AuthController extends Controller
     {
         //return view register
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users|max:255|unique:users',
+            'name'=> 'required',
+            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:8|confirmed',
-            'role' => '(admin|superadmin|user)|required'
+            'role' => 'required'
         ]);
         if ($validator->fails()) {
-            return redirect('resgister')
+            return redirect('register')
                         ->withErrors($validator)
                         ->withInput();
         } else {
             //auth user from database
-            $credentials = $request->only('email', 'password', 'role');
+            $credentials = $request->only('name','email', 'password', 'role');
             $user = User::create([
+                'name' => $credentials['name'],
                 'email' => $credentials['email'],
                 'password' => md5($credentials['password']),
                 'role' => $credentials['role']
@@ -81,11 +83,11 @@ class AuthController extends Controller
             if ($user) {
                 Auth::login($user);
                 if ($user->role == 'admin') {
-                    return redirect('dashboard.admin');
+                    return redirect()->route('dashboard');
                 } else if ($user->role == 'superadmin') {
-                    return redirect('dashboard.superadmin');
+                    return redirect()->route('laporan');
                 } else if ($user->role == 'user') {
-                    return redirect('dashboard.user');
+                    return redirect()->route('dashboard');
                 }
             } else {
                 //redirect to login

@@ -25,14 +25,16 @@ Route::get('/', function () {
 
 
 //GUEST
-//login&register
-Route::get('/login', [AuthController::class, 'indexlogin'])->name('login');
-Route::get('/register', [AuthController::class, 'indexregister'])->name('register');
+Route::middleware('guest')->group(function () {
 
-//post login&register
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+    //login&register
+    Route::get('/login', [AuthController::class, 'indexlogin'])->name('login');
+    Route::get('/register', [AuthController::class, 'indexregister'])->name('register');
 
+    //post login&register
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+});
 
 //LOGIN
 Route::middleware('auth')->group(function () {
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function () {
     });
 
     //ADMIN DAN SUPERADMIN
-    Route::middleware('nofor:user')->group(function () {
+    Route::middleware('notfor:user')->group(function () {
 
         //produk
         Route::get('/produk', [ProdukController::class, 'index'])->name('produk');
@@ -58,15 +60,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/produk/{id}/edit', [ProdukController::class, 'edit'])->name('produk.edit');
 
         //crud produk
-        Route::post('/produk', [ProdukController::class, 'store']);
-        Route::put('/produk/{id}', [ProdukController::class, 'update']);
+        Route::post('/produk/create', [ProdukController::class, 'store']);
+        Route::put('/produk/{id}/edit', [ProdukController::class, 'update']);
         Route::delete('/produk/{id}', [ProdukController::class, 'destroy']);
     });
 
     //SUPERADMIN
     Route::middleware(['notfor:user','notfor:admin'])->group(function () {
         //laporan
-        Route::get('/dashboard', [PageController::class, 'laporan'])->name('dashboard.superadmin');
+        Route::get('/laporan', [PageController::class, 'laporan'])->name('laporan');
 
         //user
         Route::get('/user', [UserController::class, 'index'])->name('user');
@@ -74,7 +76,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/{id}/edit', [UserController::class, 'edit']);
 
         //crud user
-        Route::put('/user/{id}', [UserController::class, 'update']);
+        Route::put('/user/{id}/edit', [UserController::class, 'update']);
         Route::delete('/user/{id}', [UserController::class, 'destroy']);
     });
 
