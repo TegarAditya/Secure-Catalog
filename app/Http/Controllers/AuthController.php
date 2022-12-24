@@ -13,15 +13,15 @@ class AuthController extends Controller
     public function indexlogin()
     {
         //return view login
-        return view('login');
+        return view('auth.login');
     }
-    
+
     public function indexregister()
     {
         //return view login
         return view('register');
     }
-    
+
     public function login(Request $request)
     {
 
@@ -56,8 +56,8 @@ class AuthController extends Controller
             }
         }
         return redirect('login');
-    }  
-        
+    }
+
     public function register(Request $request)
     {
         //return view register
