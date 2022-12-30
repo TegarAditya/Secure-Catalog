@@ -14,7 +14,7 @@ class Produk extends Model
         'jenis',
         'deskripsi',
         'harga',
-        'gambar',
+        // 'gambar',
         'discount'
     ];
 }

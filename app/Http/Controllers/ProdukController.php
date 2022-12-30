@@ -18,7 +18,7 @@ class ProdukController extends Controller
         //get all data from table produk
         $produk = Produk::all();
         //return view with data
-        return view('produk.index', compact('produk'));
+        return view('katalog', compact('produk'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ProdukController extends Controller
     public function create()
     {
         //create new data of table produk
-        return view('produk.create');
+        return view('tambahkatalog');
     }
 
     /**
@@ -43,7 +43,6 @@ class ProdukController extends Controller
         $produk = Produk::create($request->toArray());
         //redirect to index
         return redirect()->route('produk');
-
     }
 
     /**
@@ -69,7 +68,7 @@ class ProdukController extends Controller
     {
         $produk = Produk::find($id);
         //edit one data of table produk
-        return view('produk.edit', compact('produk'));
+        return view('editkatalog', compact('produk'));
     }
 
     /**
@@ -79,7 +78,7 @@ class ProdukController extends Controller
      * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $produk = Produk::find($id);
         //update one data of table produk
@@ -100,6 +99,6 @@ class ProdukController extends Controller
         //destroy one data of table produk
         $produk->delete();
         //redirect to index
-        return redirect()->route('produk');
+        return back();
     }
 }

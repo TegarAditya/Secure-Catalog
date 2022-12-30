@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+// use FakerRestaurant\Restaurant;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Produk>

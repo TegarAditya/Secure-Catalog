@@ -11,7 +11,7 @@ class UserController extends Controller
     function index()
     {
         $user = User::all();
-        return view('user.index', ['user' => $user]);
+        return view('listuser', ['user' => $user]);
     }
     function show($id)
     {
@@ -21,7 +21,7 @@ class UserController extends Controller
     function edit($id)
     {
         $user = User::find($id);
-        return view('user.edit', ['user' => $user]);
+        return view('edituser', ['user' => $user]);
     }
     function update(Request $request, $id)
     {

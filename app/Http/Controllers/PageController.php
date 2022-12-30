@@ -7,17 +7,26 @@ use App\Models\Produk;
 
 class PageController extends Controller
 {
-    public function katalog() {
+    public function katalog()
+    {
         $produk = Produk::all();
         return view('katalog', compact('produk'));
     }
 
-    public function detail($id) {
+    public function detail($id)
+    {
         $produk = Produk::find($id);
         return view('detail', compact('produk'));
     }
 
-    public function laporan() {
+    public function laporan()
+    {
         return view('laporan');
+    }
+
+    public function landingpage()
+    {
+        $produk = Produk::all();
+        return view('user', compact('produk'));
     }
 }

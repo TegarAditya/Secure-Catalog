@@ -19,9 +19,9 @@ use App\Http\Controllers\UserController;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 //GUEST
@@ -43,7 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     //USER DAN ADMIN
-    Route::middleware('notfor:superadmin')->group(function () {
+    Route::get('/', [PageController::class, 'landingpage'])->name('landingpage');
+
+    Route::middleware(['notfor:user', 'notfor:superadmin'])->group(function () {
 
         //katalog
         Route::get('/dashboard', [PageController::class, 'katalog'])->name('dashboard');
@@ -62,11 +64,11 @@ Route::middleware('auth')->group(function () {
         //crud produk
         Route::post('/produk/create', [ProdukController::class, 'store']);
         Route::put('/produk/{id}/edit', [ProdukController::class, 'update']);
-        Route::delete('/produk/{id}', [ProdukController::class, 'destroy']);
+        Route::get('/produk/{id}', [ProdukController::class, 'destroy']);
     });
 
     //SUPERADMIN
-    Route::middleware(['notfor:user','notfor:admin'])->group(function () {
+    Route::middleware(['notfor:user', 'notfor:admin'])->group(function () {
         //laporan
         Route::get('/laporan', [PageController::class, 'laporan'])->name('laporan');
 
@@ -77,9 +79,8 @@ Route::middleware('auth')->group(function () {
 
         //crud user
         Route::put('/user/{id}/edit', [UserController::class, 'update']);
-        Route::delete('/user/{id}', [UserController::class, 'destroy']);
+        Route::get('/user/{id}', [UserController::class, 'destroy']);
     });
-
 });
 
 //-------------------------------------------------------------------
